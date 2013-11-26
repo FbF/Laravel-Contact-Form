@@ -4,7 +4,7 @@ return array(
 
 	'uri' => 'contact',
 
-	'page' => 'laravel-contact-form::contact',
+	'view' => 'laravel-contact-form::contact',
 
 	'mail' => array(
 		'views' => array(

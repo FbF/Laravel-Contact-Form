@@ -4,7 +4,7 @@ class ContactController extends \BaseController {
 
 	public function form()
 	{
-		return \View::make(\Config::get('laravel-contact-form::page'));
+		return \View::make(\Config::get('laravel-contact-form::view'));
 	}
 
 	public function send()
