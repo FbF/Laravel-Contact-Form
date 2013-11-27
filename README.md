@@ -30,6 +30,8 @@ Publish the config
 
     php artisan config:publish fbf/laravel-contact-form
 
+Ensure the settings in app/config/mail.php are correct
+
 ## Configuration
 
 The URI of contact page
