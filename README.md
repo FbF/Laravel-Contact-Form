@@ -24,7 +24,7 @@ Run
 
 Add the following to app/config/app.php
 
-    'Fbf\LaravelContactForm\LaravelContactFormSignupServiceProvider'
+    'Fbf\LaravelContactForm\LaravelContactFormServiceProvider'
 
 Publish the config
 
