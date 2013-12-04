@@ -8,41 +8,27 @@
 		</div>
 	@endif
 
-	<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+	@foreach (Config::get('laravel-contact-form::fields') as $fieldName => $options)
 
-		{{ Form::label('name', trans('laravel-contact-form::copy.name'), array('class' => 'control-label contact-form-name-label')) }}
+		<div class="form-group{{ $errors->has($fieldName) ? ' has-error' : '' }}">
 
-		{{ Form::text('name', Input::old('name'), array('class' => 'form-control contact-form-name', 'placeholder' => trans('laravel-contact-form::copy.name'))) }}
+			{{ Form::label($fieldName, trans('laravel-contact-form::copy.labels.'.$fieldName), array('class' => 'control-label contact-form-'.$fieldName.'-label')) }}
 
-		@if ($errors->has('name'))
-			<span class="help-block">{{ $errors->first('name') }}</span>
-		@endif
+			@if ($options['type'] == 'textarea')
+				{{ Form::textarea($fieldName, Input::old($fieldName), array('class' => 'form-control contact-form-'.$fieldName, 'placeholder' => trans('laravel-contact-form::copy.placeholders.'.$fieldName))) }}
+			@elseif ($options['type'] == 'select')
+				{{ Form::select($fieldName, $options['choices'], Input::old($fieldName), array('class' => 'form-control contact-form-'.$fieldName, 'placeholder' => trans('laravel-contact-form::copy.placeholders.'.$fieldName))) }}
+			@else
+				{{ Form::text($fieldName, Input::old($fieldName), array('class' => 'form-control contact-form-'.$fieldName, 'placeholder' => trans('laravel-contact-form::copy.placeholders.'.$fieldName))) }}
+			@endif
 
-	</div>
+			@if ($errors->has($fieldName))
+				<span class="help-block">{{ $errors->first($fieldName) }}</span>
+			@endif
 
-	<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-	
-		{{ Form::label('email', trans('laravel-contact-form::copy.email'), array('class' => 'control-label contact-form-email-label')) }}
-	
-		{{ Form::text('email', Input::old('email'), array('class' => 'form-control contact-form-email', 'placeholder' => trans('laravel-contact-form::copy.email'))) }}
-	
-		@if ($errors->has('email'))
-			<span class="help-block">{{ $errors->first('email') }}</span>
-		@endif
-	
-	</div>
+		</div>
 
-	<div class="form-group{{ $errors->has('enquiry') ? ' has-error' : '' }}">
-
-		{{ Form::label('enquiry', trans('laravel-contact-form::copy.enquiry'), array('class' => 'control-label contact-form-enquiry-label')) }}
-
-		{{ Form::textarea('enquiry', Input::old('enquiry'), array('class' => 'form-control contact-form-enquiry', 'placeholder' => trans('laravel-contact-form::copy.enquiry'))) }}
-
-		@if ($errors->has('enquiry'))
-			<span class="help-block">{{ $errors->first('enquiry') }}</span>
-		@endif
-
-	</div>
+	@endforeach
 
 	{{ Form::submit(trans('laravel-contact-form::copy.submit'), array('class' => 'btn btn-default contact-form-submit')) }}
 

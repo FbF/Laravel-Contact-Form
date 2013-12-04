@@ -2,10 +2,8 @@ Hello {{ Config::get('laravel-contact-form::mail.to.name') }}
 
 We've received a new enquiry through the website, here are the details:
 
-Name:   {{ $name }}
+@foreach (Config::get('laravel-contact-form::fields') as $fieldName => $options)
 
-Email:  {{ $email }}
+	{{ trans('laravel-contact-form::copy.labels.'.$fieldName) }}    {{ $$fieldName }}
 
-Message:
-
-{{ $enquiry }}
+@endforeach

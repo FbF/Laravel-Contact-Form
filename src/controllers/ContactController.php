@@ -9,11 +9,7 @@ class ContactController extends \BaseController {
 
 	public function send()
 	{
-		$rules = array(
-			'name' => 'required',
-			'email' => 'required|email',
-			'enquiry' => 'required',
-		);
+		$rules = \Config::get('laravel-contact-form::rules');
 
 		$validator = \Validator::make(\Input::all(), $rules, \Lang::get('laravel-contact-form::copy.validation'));
 
