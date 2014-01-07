@@ -6,11 +6,11 @@ A Laravel 4 package for adding a simple contact form to a website
 ## Features
 
 * Partial for a contact form, that you can include in your own views
-* Form fields are name, email and message
+* Form fields are configurable e.g. name, email and message
 * Controller action to handle the submission of the forms, which can handle normal (redirects to previous page), or AJAX requests (responds with JSON with status code and message)
 * Translation approach for customising labels, buttons, feedback messages and validation errors
 * Enquiry is emailed to a single configurable email address
-* Twitter bootstrap compatible markup and class names for the forms
+* Twitter bootstrap compatible markup and class names for the form
 
 ## Installation
 
@@ -26,7 +26,7 @@ Add the following to app/config/app.php
 
     'Fbf\LaravelContactForm\LaravelContactFormServiceProvider'
 
-Publish the config
+Publish the config, then edit it accordingly
 
     php artisan config:publish fbf/laravel-contact-form
 
@@ -41,6 +41,43 @@ The URI of contact page
 The view of the contact page (you can set this to be a view in your app, which has much more contact on it for example, then include the partial for the form, e.g. `@include('laravel-contact-form::form')`)
 
 	'view' => 'laravel-contact-form::contact',
+
+The fields and rules for your form
+
+	'fields' => array(
+		'title' => array(
+			'type' => 'select',
+			'choices' => array(
+				'' => 'Please select',
+				'Mr' => 'Mr',
+				'Mrs' => 'Mrs',
+				'Miss' => 'Miss',
+				'Ms' => 'Ms',
+				'Dr' => 'Dr',
+				'Other' => 'Other',
+			),
+		),
+		'first_name' => array(
+			'type' => 'text',
+		),
+		'last_name' => array(
+			'type' => 'text',
+		),
+		'email' => array(
+			'type' => 'text',
+		),
+		'enquiry' => array(
+			'type' => 'textarea',
+		),
+	),
+
+	'rules' => array(
+		'title' => 'required',
+		'first_name' => 'required',
+		'last_name' => 'required',
+		'email' => 'required|email',
+		'enquiry' => 'required',
+	),
 
 The mail configuration options speak for themselves...
 

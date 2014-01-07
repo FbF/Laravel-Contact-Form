@@ -51,8 +51,8 @@ return array(
 			'laravel-contact-form::emails.text.enquiry',
 		),
 		'to' => array(
-			'name' => 'Five by Five Webmaster',
-			'email' => 'webmaster@fivebyfivedigital.com',
+			'name' => 'Customer Service',
+			'email' => 'customer.service@domain.com',
 		),
 		'subject' => 'Website Enquiry',
 	),
