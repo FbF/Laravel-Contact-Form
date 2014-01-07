@@ -57,4 +57,8 @@ return array(
 		'subject' => 'Website Enquiry',
 	),
 
+	'page_title' => 'Contact Us',
+	'meta_description' => 'Fill in this form to contact us',
+	'meta_keywords' => 'Contact',
+
 );
